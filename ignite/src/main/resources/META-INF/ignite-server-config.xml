@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="workDirectory" value="#{systemProperties['user.dir']}/ignite-work"/>
+
+        <property name="cacheConfiguration">
+            <list>
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="ACCOUNTS"/>
+                    <property name="sqlSchema" value="PUBLIC"/>
+                    <property name="indexedTypes">
+                        <list>
+                            <value>org.vk.gridgain.dih.model.AccountKey</value>
+                            <value>org.vk.gridgain.dih.model.Account</value>
+                        </list>
+                    </property>
+                </bean>
+
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="TRANSACTIONS"/>
+                    <property name="sqlSchema" value="PUBLIC"/>
+                    <property name="indexedTypes">
+                        <list>
+                            <value>org.vk.gridgain.dih.model.TransactionKey</value>
+                            <value>org.vk.gridgain.dih.model.Transaction</value>
+                        </list>
+                    </property>
+                    <property name="interceptor">
+                        <bean class="org.vk.gridgain.dih.ignite.FraudDetector"/>
+                    </property>
+                </bean>
+
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="TRAVELS"/>
+                </bean>
+            </list>
+        </property>
+
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <value>127.0.0.1:47500..47509</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>
