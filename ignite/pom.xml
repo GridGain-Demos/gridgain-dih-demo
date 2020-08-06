@@ -7,6 +7,7 @@
         <artifactId>dih-demo</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dih-demo-ignite</artifactId>
@@ -22,35 +23,24 @@
             <groupId>org.gridgain</groupId>
             <artifactId>gridgain-core</artifactId>
             <version>${gridgain.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.gridgain</groupId>
             <artifactId>ignite-core</artifactId>
             <version>${gridgain.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.gridgain</groupId>
             <artifactId>ignite-spring</artifactId>
             <version>${gridgain.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.gridgain</groupId>
             <artifactId>ignite-indexing</artifactId>
             <version>${gridgain.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.gridgain</groupId>
-            <artifactId>ignite-rest-http</artifactId>
-            <version>${gridgain.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

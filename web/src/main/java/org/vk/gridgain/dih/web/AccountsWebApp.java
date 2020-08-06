@@ -17,9 +17,8 @@ package org.vk.gridgain.dih.web;/*
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import javax.cache.Cache;
 import org.apache.commons.lang.StringUtils;
@@ -37,18 +36,14 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class AccountsWebApp {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         IgniteClient ignite = Ignition.startClient(new ClientConfiguration().setAddresses("localhost"));
 
         ClientCache<AccountKey, Account> accounts = ignite.cache("ACCOUNTS");
         ClientCache<String, Set<String>> travels = ignite.cache("TRAVELS");
 
         get("/accounts", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-
             Collection<Row> rows = new ArrayList<>();
-
-            model.put("rows", rows);
 
             for (Cache.Entry<AccountKey, Account> entry : accounts.query(new ScanQuery<AccountKey, Account>())) {
                 String ccNumber = entry.getKey().getCcNumber();
@@ -63,7 +58,7 @@ public class AccountsWebApp {
                 rows.add(new Row(ccNumber, firstName, lastName, issueCountry, travelCountries));
             }
 
-            return new ModelAndView(model, "accounts.vm");
+            return new ModelAndView(Collections.singletonMap("rows", rows), "accounts.vm");
         }, new VelocityTemplateEngine());
 
         post("/accounts", (req, res) -> {
