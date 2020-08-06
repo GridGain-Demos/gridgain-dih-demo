@@ -1,6 +1,6 @@
 # GridGain Data Integration Hub Demo
 
-This demo emulates a fraud detection system for credit card transactions. The system works with 3 datasets that originate from 3 different sources.
+This demo emulates a fraud detection system for credit card transactions. The system works with 3 data sets that originate from 3 different sources.
 
 ## Accounts Data
 
@@ -10,9 +10,9 @@ Every credit card has a country code associated with it to indicate where the ca
 
 ## Transactions Data
 
-Transactions are continously streamed from Kafka via [GridGain Kafka Connector](https://www.gridgain.com/docs/latest/integrations/kafka/cert-kafka-connect).
+Transactions are continuously streamed from Kafka via [GridGain Kafka Connector](https://www.gridgain.com/docs/latest/integrations/kafka/cert-kafka-connect).
 
-Every transaction record holds a country code to indicate where this transaction occured.
+Every transaction record holds a country code to indicate where this transaction occurred.
 
 ## Travel Data
 
@@ -22,17 +22,17 @@ This data is stored only in GridGain.
 
 ## Fraud Detection
 
-An incoming transaction is considered fradulent if one of these conditions is true:
+An incoming transaction is considered fraudulent if one of these conditions is true:
 
 - The transaction is associated with a non-existent account (e.g., provided credit card number is invalid).
-- The transaction occured outside of the home country, as well as not in one of the countries specified for travel.
+- The transaction occurred outside of the home country, as well as not in one of the countries specified for travel.
 
 # Installation
 
 ## GridGain
 
-1. Download GridGain 8.7.12 ZIP from here: https://www.gridgain.com/resources/download
-2. Unzip the downloaded file to a preffered location (`$GRIDGAIN_HOME`).
+1. Download GridGain 8.7.12 Enterprise Edition ZIP from here: https://www.gridgain.com/resources/download
+2. Unzip the downloaded file to a preferred location (`$GRIDGAIN_HOME`).
 3. Prepare Kafka Connector package:
 ```bash
 cd $GRIDGAIN_HOME/integration/gridgain-kafka-connect
@@ -42,7 +42,7 @@ cd $GRIDGAIN_HOME/integration/gridgain-kafka-connect
 ## Kafka
 
 1. Download Kafka 2.4.1 from here: https://kafka.apache.org/downloads
-2. Unzip the downloaded file to a preffered location (`$KAFKA_HOME`).
+2. Unzip the downloaded file to a preferred location (`$KAFKA_HOME`).
 3. Open the `$KAFKA_HOME/config/connect-standalone.properties` file for editing and add the following line (replace `$GRIDGAIN_HOME` with the actual path to GridGain installation):
 ```properties
 plugin.path=$GRIDGAIN_HOME/integration/gridgain-kafka-connect
@@ -96,7 +96,7 @@ SELECT id, ccNumber, amount
 FROM Transaction
 WHERE status = 'NO_ACCOUNT'
 
--- Transactions occured in an unexpected country
+-- Transactions occurred in an unexpected country
 SELECT a.ccNumber, CONCAT(a.firstName, ' ', a.lastName) as name, a.issueCountry, t.country, t.status
 FROM Account a, Transaction t
 WHERE a.ccNumber = t.ccNumber
