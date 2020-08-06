@@ -71,6 +71,41 @@ $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
 $KAFKA_HOME/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic ignite.TRANSACTIONS
 ```
 
+## Hadoop
+
+1. Download Hadoop 2.10.0 from here: https://hadoop.apache.org/releases.html
+2. Unzip the downloaded file to a preferred location (`$HADOOP_HOME`).
+3. Update the `$HADOOP_HOME/etc/hadoop/core-site.xml` with the following content:
+```xml
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+```
+4. Update the `$HADOOP_HOME/etc/hadoop/hdfs-site.xml` with the following content:
+```xml
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+</configuration>
+```
+5. Format HDFS:
+```bash
+$HADOOP_HOME/bin/hdfs namenode -format
+```
+6. Start HDFS:
+```bash
+$HADOOP_HOME/sbin/start-dfs.sh
+```
+7. Copy the `data/accounts.csv` file located in this project to HDFS:
+```bash
+$HADOOP_HOME/bin/hdfs dfs -put $DIH_DEMO/data/accounts.csv /
+```
+
 ## This Project
 
 1. Build the project (replace `$GRIDGAIN_HOME` with the actual path to GridGain installation):
