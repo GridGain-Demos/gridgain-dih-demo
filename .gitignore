@@ -1,0 +1,5 @@
+.idea
+*.iml
+target
+ignite-work
+spark-warehouse

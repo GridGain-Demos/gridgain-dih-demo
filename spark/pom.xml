@@ -17,12 +17,6 @@
             <groupId>org.vk.gridgain</groupId>
             <artifactId>dih-demo-ignite</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.gridgain</groupId>
-                    <artifactId>ignite-rest-http</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>

@@ -36,7 +36,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class AccountsWebApp {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         IgniteClient ignite = Ignition.startClient(new ClientConfiguration().setAddresses("localhost"));
 
         ClientCache<AccountKey, Account> accounts = ignite.cache("ACCOUNTS");

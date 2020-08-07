@@ -124,15 +124,15 @@ $KAFKA_HOME/bin/connect-standalone.sh $KAFKA_HOME/config/connect-standalone.prop
 3. Run `AccountsLoader` class in your IDE to load accounts data from HDFS.
 4. Run `TransactionsProducer` class in your IDE to start streaming transactions from Kafka.
 5. Run `AccountsWebApp` class in your IDE. You can now edit travel countries for all the accounts via the Web interface: http://localhost:4567/accounts
-6. Open SQL screen in the Web Console and inspect fraudulent transactions. Here are a couple of example queries that can be used for this:
+6. Run `FraudChecker` class in your IDE. It will connect to the Ignite cluster and periodically execute SQL queries to check if there are any fraudulent transactions. In case there are any, they will be printed out. Here are the queries that are used for this:
 ```SQL
 -- Transactions associated with a non-existent account
-SELECT *
+SELECT id, ccNumber, amount
 FROM Transaction
 WHERE status = 'NO_ACCOUNT'
 
 -- Transactions occurred in an unexpected country
-SELECT a.ccNumber, CONCAT(a.firstName, ' ', a.lastName) as name, a.issueCountry, t.country as txCountry, t.status
+SELECT a.ccNumber, CONCAT(a.firstName, ' ', a.lastName) as name, a.issueCountry, t.country, t.status
 FROM Account a, Transaction t
 WHERE a.ccNumber = t.ccNumber
 AND t.status = 'WRONG_COUNTRY'

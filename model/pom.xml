@@ -17,6 +17,7 @@
             <groupId>org.gridgain</groupId>
             <artifactId>ignite-core</artifactId>
             <version>${gridgain.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

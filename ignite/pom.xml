@@ -7,6 +7,7 @@
         <artifactId>dih-demo</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dih-demo-ignite</artifactId>
@@ -41,12 +42,6 @@
             <artifactId>ignite-indexing</artifactId>
             <version>${gridgain.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.gridgain</groupId>
-            <artifactId>ignite-rest-http</artifactId>
-            <version>${gridgain.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -73,9 +68,8 @@
                             <version>${project.version}</version>
                         </artifactItem>
                     </artifactItems>
-                    <excludeGroupIds>org.gridgain</excludeGroupIds>
-                    <excludeTransitive>true</excludeTransitive>
                     <outputDirectory>${gridgain.home}/integration/gridgain-kafka-connect/lib</outputDirectory>
+                    <includeScope>runtime</includeScope>
                     <overWriteReleases>true</overWriteReleases>
                     <overWriteSnapshots>true</overWriteSnapshots>
                 </configuration>
