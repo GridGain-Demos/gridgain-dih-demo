@@ -8,7 +8,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <gridgain.version>8.7.12</gridgain.version>
+        <gridgain.version>8.7.23</gridgain.version>
         <kafka.version>2.4.1</kafka.version>
     </properties>
 
@@ -26,9 +26,9 @@
 
     <modules>
         <module>model</module>
-        <module>kafka</module>
-        <module>spark</module>
         <module>ignite</module>
+        <module>spark</module>
+        <module>kafka</module>
         <module>web</module>
     </modules>
 

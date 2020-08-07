@@ -31,7 +31,7 @@ An incoming transaction is considered fraudulent if one of these conditions is t
 
 ## GridGain
 
-1. Download GridGain 8.7.12 Enterprise Edition ZIP from here: https://www.gridgain.com/resources/download
+1. Download GridGain 8.7.23 Enterprise Edition ZIP from here: https://www.gridgain.com/resources/download
 2. Unzip the downloaded file to a preferred location (`$GRIDGAIN_HOME`).
 3. Prepare Kafka Connector package:
 ```bash
@@ -104,6 +104,11 @@ $HADOOP_HOME/sbin/start-dfs.sh
 7. Copy the `data/accounts.csv` file located in this project to HDFS:
 ```bash
 $HADOOP_HOME/bin/hdfs dfs -put $DIH_DEMO/data/accounts.csv /
+```
+8. Verify:
+```bash
+$HADOOP_HOME/bin/hdfs dfs -ls /
+$HADOOP_HOME/bin/hdfs dfs -cat /accounts.csv
 ```
 
 ## This Project

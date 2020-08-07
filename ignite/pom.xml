@@ -68,10 +68,9 @@
                             <version>${project.version}</version>
                         </artifactItem>
                     </artifactItems>
+                    <includeScope>compile</includeScope>
+                    <excludeGroupIds>org.gridgain</excludeGroupIds>
                     <outputDirectory>${gridgain.home}/integration/gridgain-kafka-connect/lib</outputDirectory>
-                    <includeScope>runtime</includeScope>
-                    <overWriteReleases>true</overWriteReleases>
-                    <overWriteSnapshots>true</overWriteSnapshots>
                 </configuration>
             </plugin>
         </plugins>
